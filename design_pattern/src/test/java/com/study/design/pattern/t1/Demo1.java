@@ -1,4 +1,4 @@
-package com.study.refactoring.t1;
+package com.study.design.pattern.t1;
 
 public class Demo1 {
 

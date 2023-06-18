@@ -1,4 +1,4 @@
-package com.study.refactoring;
+package com.study.design.pattern;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
