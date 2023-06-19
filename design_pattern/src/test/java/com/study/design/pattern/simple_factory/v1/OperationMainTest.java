@@ -24,4 +24,10 @@ public class OperationMainTest {
 //        int i = 4;
         Assert.assertTrue("不相等",result == i);
     }
+
+    @Test
+    public void testExample(){
+        logger.info("this is a test example");
+    }
+
 }
