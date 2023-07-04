@@ -66,12 +66,12 @@ public class ValidatorDemo {
     @Test
     public void testDateRange(){
         DateValidator validator = DateValidator.getInstance();
+        DateTime date = DateUtil.parse("2000年12月11日", DatePattern.CHINESE_DATE_PATTERN);
         DateTime start = DateUtil.parse("2001年12月11日", DatePattern.CHINESE_DATE_PATTERN);
         DateTime end = DateUtil.parse("2003年12月11日", DatePattern.CHINESE_DATE_PATTERN);
-        int dates = validator.compareDates(start, end, TimeZone.getDefault());
-
-
-        System.out.println(dates);
+        // date 指定日期; start 范围开始时间; end 范围结束时间。
+        boolean flag = DateUtil.isIn(date, start, end);
+        System.out.println(flag);
     }
 
 }
