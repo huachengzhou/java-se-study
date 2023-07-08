@@ -19,7 +19,7 @@ public class Demo2ExampleTest {
             if (annotation == null){
                 continue;
             }
-            System.out.println(annotation.types().getName());
+            System.out.println(annotation.types().getName()+" "+annotation.types());
         }
     }
 
