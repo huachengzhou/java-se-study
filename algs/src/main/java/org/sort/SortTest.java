@@ -1,9 +1,9 @@
 package org.sort;
 
 import array.ToArray;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.Arrays;
 
@@ -12,7 +12,7 @@ public class SortTest {
     int[] arr = ToArray.toFinalArray();
     long start = 0;
 
-    @BeforeAll
+    @Before
     public void start() {
         start = System.currentTimeMillis();
     }
@@ -45,7 +45,7 @@ public class SortTest {
         System.out.println(Arrays.toString(arr));
     }
 
-    @AfterAll
+    @After
     public void end() {
         long time = System.currentTimeMillis() - start;
         System.out.println("time:" + (time / 1000));
