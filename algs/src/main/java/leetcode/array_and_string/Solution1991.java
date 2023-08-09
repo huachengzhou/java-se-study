@@ -92,6 +92,47 @@ public class Solution1991 {
         return centerLen;
     }
 
+    /**
+     * 合并区间
+     *
+     * @param intervals
+     * @return
+     */
+    public static int[][] mergeArray(int[][] intervals) {
+        final int length = intervals.length;
+        int removeIndex = 0;
+        for (int i = length - 1; i > 0; i--) {
+            for (int j = 0; j < i; j++) {
+                if (intervals[j].length == 0 || intervals[j + 1].length == 0) {
+                    continue;
+                }
+                if (intervals[j][1] >= intervals[j + 1][0] && intervals[j][0] < intervals[j + 1][0]) {
+                    intervals[j] = new int[]{intervals[j][0], intervals[j + 1][1]};
+                    intervals[j + 1] = new int[0];
+                    removeIndex++;
+                } else if (intervals[j][1] == intervals[j + 1][1] && intervals[j][0] == intervals[j + 1][0]) {
+                    intervals[j] = new int[]{intervals[j][0], intervals[j + 1][1]};
+                    intervals[j + 1] = new int[0];
+                    removeIndex++;
+                }else if (intervals[j][1] <= intervals[j + 1][1] && intervals[j][0] >= intervals[j + 1][0]){
+                    intervals[j] = intervals[j+1];
+                    intervals[j + 1] = new int[0];
+                    removeIndex++;
+                }
+            }
+        }
+        //处理冗余数据
+        int[][] arr = new int[length - removeIndex][2];
+        int i = 0;
+        for (int j = 0; j < intervals.length; j++) {
+            if (intervals[j].length == 0) {
+                continue;
+            }
+            arr[i++] = intervals[j];
+        }
+        return arr;
+    }
+
 
     /**
      * 搜索插入位置
@@ -103,15 +144,15 @@ public class Solution1991 {
     public static int searchInsert(int[] nums, int target) {
         int left = 0;
         int mid = 0;
-        int right = nums.length-1;
-        for (;left <= right;){
+        int right = nums.length - 1;
+        for (; left <= right; ) {
             mid = (left + right) / 2;
-            if (nums[mid] < target){
+            if (nums[mid] < target) {
                 //向左边查找
-                left = mid+1;
-            }else {
+                left = mid + 1;
+            } else {
                 //向右查找
-                right = mid-1;
+                right = mid - 1;
             }
         }
         return left;
@@ -125,7 +166,7 @@ public class Solution1991 {
         for (; left <= right; ) {
             mid = (right + left) / 2;
             if (target == arr[mid]) {
-                index = mid ;
+                index = mid;
                 break;
             } else if (target > arr[mid]) {
                 //向左边查找
@@ -137,9 +178,6 @@ public class Solution1991 {
         }
         return index;
     }
-
-
-
 
 
 }
