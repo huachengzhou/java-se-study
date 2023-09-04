@@ -20,4 +20,14 @@ public @interface OperationLog {
      */
     String operateType();
 
+    /**
+     * 传入需要获取的参数，可在default设置默认值
+     */
+    String methodParamName() default "";
+
+    /**
+     * 操作描述
+     */
+    String operateDesc()default "";
+
 }
