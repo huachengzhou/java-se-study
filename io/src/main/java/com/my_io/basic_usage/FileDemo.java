@@ -2,7 +2,7 @@ package com.my_io.basic_usage;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.json.JSONUtil;
-import org.apache.commons.configuration.FileSystem;
+import com.my_io.PathUtils;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,11 +19,7 @@ public class FileDemo {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     public String getProjectPath() {
-        String separator = File.separator;
-        String baseDir = "src" + separator + "main" + separator + "java";
-        String page = getClass().getPackage().getName();
-        String[] strings = page.split("\\.");
-        return System.getProperty("user.dir") + separator + baseDir + separator + String.join(separator, strings);
+        return PathUtils.getProjectPath();
     }
 
 
