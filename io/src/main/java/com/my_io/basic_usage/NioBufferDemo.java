@@ -29,7 +29,12 @@ public class NioBufferDemo {
     @Test
     public void testCreateBuffer()throws Exception {
 
-        ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+        //非直接缓冲区
+//        ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+//        printByteBuffer(byteBuffer);
+
+        //直接缓冲区 通过 allocateDirect() 方法分配缓冲区，将缓冲区建立在物理内存之中
+        ByteBuffer byteBuffer = ByteBuffer.allocateDirect(1024);
         printByteBuffer(byteBuffer);
     }
 
@@ -68,7 +73,7 @@ public class NioBufferDemo {
         byteBuffer.put("abcdef".getBytes(UTF_8));
         printByteBuffer(byteBuffer);
 
-        //切换到读数据模式
+        //切换到读数据模式 实际是切换读写 因为不管读和写都是这个方法
         /*
         flip方法将Buffer从写模式切换到读模式。调用flip()方法会将position设回0，并将limit设置成之前position的值。
         换句话说，position现在用于标记读的位置，limit表示之前写进了多少个byte、char等 —— 现在能读取多少个byte、char等。
