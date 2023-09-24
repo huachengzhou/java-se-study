@@ -20,9 +20,10 @@ public class RandomAccessFileFour2Demo {
 
 
     public static void main(String[] args) throws Exception {
-//        String spec = "https://mirrors.tuna.tsinghua.edu.cn/centos/7/os/x86_64/Packages/389-ds-base-1.3.10.2-6.el7.x86_64.rpm";
-        String spec = "";
-        spec = "https://qiniu-cdn0.jinxidao.com/group1/M00/48/7B/oYYBAF8zWOCAdzRlAAb5EeegLnw937.jpg";
+        String spec = "https://dldir1.qq.com/qqfile/qq/PCQQ9.7.16/QQ9.7.16.29187.exe";
+//        String spec = "https://mksoftcdn.mydown.com/650ef9c1/1585794521cc656246c6ab05b9b48cef/uploadsoft/lightpdf-setup.2.7.0.4.exe";
+//        String spec = "";
+//        spec = "https://upload-images.jianshu.io/upload_images/8120864-8b0b3ce58167d07a.jpg";
         URL url = new URL(spec);
         String boundary = UUID.randomUUID().toString();
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -53,21 +54,19 @@ public class RandomAccessFileFour2Demo {
         InputStream read = urlConnection.getInputStream();
         int pageSize = 1024 * 2;
         long pages = contentLengthLong % pageSize == 0 ? contentLengthLong / pageSize : contentLengthLong / pageSize + 1;
-        CountDownLatch downLatch = null;
         int count = 1;
+        final long groupSourceIndex = 10;
+        CountDownLatch downLatch = new CountDownLatch((int) groupSourceIndex);
         //利用多线程分段下载
         for (long i = 0L; i < pages; i++) {
             //线程分组
-            long groupIndex = 10;
+            long groupIndex = groupSourceIndex;
             if (i % groupIndex == 0) {
                 System.out.println("第" + count + "次分组分段下载!");
-                if (i == 0L) {
-                    downLatch = new CountDownLatch((int) groupIndex);
-                }
                 if (i + groupIndex > pages) {
                     groupIndex = pages - i;
                 }
-                if (i != 0L) {
+                if (count >= 2) {
                     downLatch.await();
                     downLatch = new CountDownLatch((int) groupIndex);
                 }

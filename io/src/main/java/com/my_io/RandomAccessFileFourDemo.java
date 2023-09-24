@@ -20,7 +20,7 @@ public class RandomAccessFileFourDemo {
     public static void main(String[] args) throws Exception {
 //        String spec = "https://mirrors.tuna.tsinghua.edu.cn/centos/7/os/x86_64/Packages/389-ds-base-1.3.10.2-6.el7.x86_64.rpm";
         String spec = "";
-        spec = "https://qiniu-cdn0.jinxidao.com/group1/M00/48/7B/oYYBAF8zWOCAdzRlAAb5EeegLnw937.jpg";
+        spec = "http://www.zhouch.life/docs/imgs/java/solr/20210721143922946.png";
         URL url = new URL(spec);
         String boundary = UUID.randomUUID().toString();
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -42,6 +42,7 @@ public class RandomAccessFileFourDemo {
             });
         }
         String input = "D:\\data\\" + UUID.randomUUID().toString().substring(0, 8) + "_" + fileName;
+        System.out.println(input);
         //建立空文件
         RandomAccessFile raf = new RandomAccessFile(input, "rw");
         raf.setLength(contentLengthLong);
