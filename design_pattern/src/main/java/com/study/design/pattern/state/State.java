@@ -7,6 +7,10 @@ package com.study.design.pattern.state;
  */
 public interface State {
 
+    enum  Status{
+        ;
+    }
+
     /**
      * 初始化 行为
      * @return

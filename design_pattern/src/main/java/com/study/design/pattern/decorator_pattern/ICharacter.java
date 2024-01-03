@@ -10,6 +10,6 @@ public interface ICharacter {
     /**
      * 展示
      */
-    public void show() ;
+    void show() ;
 
 }
