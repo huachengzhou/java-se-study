@@ -18,7 +18,7 @@ public class DemoBinarySearchTest {
         int target = 95;
         int index = DemoBinarySearch.binarySearch1(intArray, target);
         System.out.println(intArray[index]);
-        Assert.assertTrue("不相等",intArray[index] == target);
+        Assert.assertEquals("不相等", intArray[index], target);
     }
 
 }
