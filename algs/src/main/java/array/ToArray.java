@@ -49,7 +49,7 @@ public class ToArray {
 
             if (start == null) start = START;
             if (end == null) end = END;
-            if (start > end && start != null && end != null) {
+            if (start > end) {
                 int result = start;
                 start = end;
                 end = result;
