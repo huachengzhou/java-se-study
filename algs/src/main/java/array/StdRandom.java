@@ -7,7 +7,7 @@ import java.util.Random;
  * @Date: 2018/7/26 20:59
  * @Description:
  */
-public class Zhou_StdRandom {
+public class StdRandom {
     private static Random random = new Random(System.currentTimeMillis());
     /**
      * 功能描述: Chinese 静态初始化 static initializer
@@ -32,7 +32,7 @@ public class Zhou_StdRandom {
      * @auther: zch
      * @date: 2018/7/26 21:00
      */
-    private Zhou_StdRandom() {
+    private StdRandom() {
     }
 
     public static void setSeed(long num) {

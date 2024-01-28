@@ -40,7 +40,7 @@ public class ToArray {
     }
 
     public int[] toIntArray() {
-        int num = Zhou_StdRandom.uniform(12, 20);
+        int num = StdRandom.uniform(12, 20);
 
         int[] arr = null;
         if (size == 0) arr = new int[num];
@@ -58,7 +58,7 @@ public class ToArray {
             for (int i = 0; i < num; i++) {
                 if (arr == null) arr = new int[size];
                 if (start < end) {
-                    arr[i] = Zhou_StdRandom.uniform(this.start, this.end);
+                    arr[i] = StdRandom.uniform(this.start, this.end);
                 } else {
                     throw new IllegalArgumentException("argument must be positive");
                 }
