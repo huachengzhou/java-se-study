@@ -6,8 +6,8 @@ public class DemoBinarySearch {
     /**
      * 二分查找 初次学习
      *
-     * @param arr
-     * @param target
+     * @param arr 升序数组
+     * @param target 目标值
      * @return
      */
     public static int binarySearch1(int[] arr, int target) {
