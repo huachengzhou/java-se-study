@@ -4,11 +4,38 @@ public class DemoBinarySearch {
 
     /**
      * 右二分查找
+     *
      * @param arr
      * @param target
-     * @return
+     * @return 找到返回正整数没找到返回负整数
      */
-    public static int rightMostBinarySearch1(int[] arr, int target){
+    public static int rightMostBinarySearch(int[] arr, int target) {
+        int i = 0;
+        int j = arr.length - 1;
+        //i-j 范围内元素
+        while (i <= j) {
+            //移位运算 右移1位
+            int mid = (i + j) >>> 1;
+            //目标值在左边
+            if (target < arr[mid]) {
+                j = mid - 1;
+                //目标值在右边
+            } else if (arr[mid] <= target) {
+                i = mid + 1;
+            }
+        }
+        //没找到返回最近的索引并且强行取负
+        return target == arr[i - 1] ? i - 1 : -(i - 1);
+    }
+
+    /**
+     * 右二分查找
+     *
+     * @param arr
+     * @param target
+     * @return 找到返回正整数没找到返回负整数
+     */
+    public static int rightMostBinarySearch1(int[] arr, int target) {
         int i = 0;
         int j = arr.length - 1;
         int candidate = -1;
@@ -38,7 +65,7 @@ public class DemoBinarySearch {
      *
      * @param arr
      * @param target
-     * @return
+     * @return 找到返回正整数没找到返回负整数
      */
     public static int leftMostBinarySearch1(int[] arr, int target) {
         int i = 0;
@@ -66,10 +93,38 @@ public class DemoBinarySearch {
     }
 
     /**
-     * 标准二分基础查找
+     * 左二分查找
+     *
      * @param arr
      * @param target
-     * @return
+     * @return 找到返回正整数没找到返回负整数
+     */
+    public static int leftMostBinarySearch(int[] arr, int target) {
+        int i = 0;
+        int j = arr.length - 1;
+        //i-j 范围内元素
+        while (i <= j) {
+            //移位运算 右移1位
+            int mid = (i + j) >>> 1;
+            //目标值在左边
+            if (target <= arr[mid]) {
+                j = mid - 1;
+                //目标值在右边
+            } else if (arr[mid] < target) {
+                i = mid + 1;
+            }
+        }
+        //没找到返回最近的索引并且强行取负
+        return target == arr[i] ? i : -i;
+    }
+
+
+    /**
+     * 标准二分基础查找
+     *
+     * @param arr
+     * @param target
+     * @return 找到返回正整数没找到返回-1
      */
     public static int binarySearch(int[] arr, int target) {
         int i = 0, j = arr.length - 1;
@@ -97,7 +152,7 @@ public class DemoBinarySearch {
      *
      * @param arr    升序数组
      * @param target 目标值
-     * @return
+     * @return 找到返回正整数没找到返回-1
      */
     public static int binarySearch1(int[] arr, int target) {
         int i = 0;
