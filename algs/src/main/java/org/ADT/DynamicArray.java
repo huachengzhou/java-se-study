@@ -72,16 +72,24 @@ public class DynamicArray implements Iterable<Integer> {
     @Override
     public Iterator<Integer> iterator() {
         return new Iterator<Integer>() {
-            private int count = 0;
+            private int i = 0;
 
+            /**
+             * 有没有下一个元素
+             * @return
+             */
             @Override
             public boolean hasNext() {
-                return count != size;
+                return i != size;
             }
 
+            /**
+             * 返回当前元素，并移动到下一个元素
+             * @return
+             */
             @Override
             public Integer next() {
-                return array[count++];
+                return array[i++];
             }
         };
     }
