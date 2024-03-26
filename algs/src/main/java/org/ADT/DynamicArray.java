@@ -1,7 +1,9 @@
 package org.ADT;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.function.Consumer;
+import java.util.stream.IntStream;
 
 /**
  * 动态数组
@@ -58,10 +60,23 @@ public class DynamicArray implements Iterable<Integer> {
         return array[index];
     }
 
+    /**
+     * 遍历
+     * @param consumer
+     */
     public void foreach(Consumer<Integer> consumer) {
         for (int i = 0; i < size; i++) {
             consumer.accept(array[i]);
         }
+    }
+
+    /**
+     * 获取数据流
+     * @return
+     */
+    public IntStream stream(){
+        //有效流
+        return IntStream.of(Arrays.copyOfRange(array,0,size)) ;
     }
 
     /**

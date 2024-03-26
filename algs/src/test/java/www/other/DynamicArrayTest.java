@@ -20,9 +20,11 @@ public class DynamicArrayTest {
 
 //        dynamicArray.foreach(ele -> System.out.println(ele));
 
-        for (Integer ele : dynamicArray) {
-            System.out.println(ele);
-        }
+//        for (Integer ele : dynamicArray) {
+//            System.out.println(ele);
+//        }
+
+        dynamicArray.stream().forEach(ele -> System.out.println(ele));
 
 
 //        for (int index = 0; index < dynamicArray.size(); index++) {
