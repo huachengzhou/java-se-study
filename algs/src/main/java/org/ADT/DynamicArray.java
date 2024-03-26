@@ -1,11 +1,15 @@
 package org.ADT;
 
+import java.util.Iterator;
+import java.util.function.Consumer;
+
 /**
  * 动态数组
+ *
  * @author : chengdu
  * @date :  2024/3/26-03
  **/
-public class DynamicArray {
+public class DynamicArray implements Iterable<Integer> {
     /**
      * 逻辑大小
      */
@@ -46,12 +50,39 @@ public class DynamicArray {
         }
     }
 
-    public int size(){
+    public int size() {
         return size;
     }
 
-    public int get(int index){
-        return array[index] ;
+    public int get(int index) {
+        return array[index];
     }
 
+    public void foreach(Consumer<Integer> consumer) {
+        for (int i = 0; i < size; i++) {
+            consumer.accept(array[i]);
+        }
+    }
+
+    /**
+     * Returns an iterator over elements of type {@code T}.
+     *
+     * @return an Iterator.
+     */
+    @Override
+    public Iterator<Integer> iterator() {
+        return new Iterator<Integer>() {
+            private int count = 0;
+
+            @Override
+            public boolean hasNext() {
+                return count != size;
+            }
+
+            @Override
+            public Integer next() {
+                return array[count++];
+            }
+        };
+    }
 }

@@ -16,10 +16,18 @@ public class DynamicArrayTest {
         dynamicArray.addLast(3);
         dynamicArray.addLast(4);
 
-        dynamicArray.add(0,1);
-        for (int index = 0; index < dynamicArray.size(); index++) {
-            System.out.println(dynamicArray.get(index));
+        dynamicArray.add(0, 1);
+
+//        dynamicArray.foreach(ele -> System.out.println(ele));
+
+        for (Integer ele : dynamicArray) {
+            System.out.println(ele);
         }
+
+
+//        for (int index = 0; index < dynamicArray.size(); index++) {
+//            System.out.println(dynamicArray.get(index));
+//        }
     }
 
 }
