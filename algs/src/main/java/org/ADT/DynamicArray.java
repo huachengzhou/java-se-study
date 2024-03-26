@@ -1,0 +1,57 @@
+package org.ADT;
+
+/**
+ * 动态数组
+ * @author : chengdu
+ * @date :  2024/3/26-03
+ **/
+public class DynamicArray {
+    /**
+     * 逻辑大小
+     */
+    private int size;
+
+    /**
+     * 容量
+     */
+    private int capacity = 8;
+
+    private int[] array = new int[capacity];
+
+    /**
+     * 添加元素到最后
+     *
+     * @param ele
+     */
+    public void addLast(int ele) {
+        array[size] = ele;
+        size++;
+    }
+
+    /**
+     * 添加元素
+     *
+     * @param index
+     * @param element
+     */
+    public void add(int index, int element) {
+        if (index >= 0 && index < size) {
+            System.arraycopy(array, index, array, index + 1, size - index);
+            array[index] = element;
+            size++;
+        } else if (index == size) {
+            //addLast
+            array[size] = element;
+            size++;
+        }
+    }
+
+    public int size(){
+        return size;
+    }
+
+    public int get(int index){
+        return array[index] ;
+    }
+
+}
