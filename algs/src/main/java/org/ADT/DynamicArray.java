@@ -22,7 +22,11 @@ public class DynamicArray implements Iterable<Integer> {
      */
     private int capacity = 8;
 
-    private int[] array = new int[capacity];
+    /**
+     * 懒惰初始化
+     */
+    private int[] array = new int[0];
+//    private int[] array = new int[capacity];
 
     /**
      * 添加元素到最后
@@ -30,8 +34,28 @@ public class DynamicArray implements Iterable<Integer> {
      * @param ele
      */
     public void addLast(int ele) {
+        //容量检查
+        checkAndGrow();
         array[size] = ele;
         size++;
+    }
+
+    /**
+     * 删除元素
+     *
+     * @param index
+     * @return
+     */
+    public int remove(int index) {
+        if (index < 0 || index > size) {
+            throw new RuntimeException("索引不在范围内!");
+        }
+        int removed = array[index];
+        if (index < size - 1) {
+            System.arraycopy(array, index + 1, array, index, size - index - 1);
+        }
+        size--;
+        return removed;
     }
 
     /**
@@ -41,6 +65,8 @@ public class DynamicArray implements Iterable<Integer> {
      * @param element
      */
     public void add(int index, int element) {
+        //容量检查
+        checkAndGrow();
         if (index >= 0 && index < size) {
             System.arraycopy(array, index, array, index + 1, size - index);
             array[index] = element;
@@ -49,6 +75,22 @@ public class DynamicArray implements Iterable<Integer> {
             //addLast
             array[size] = element;
             size++;
+        }
+    }
+
+    /**
+     * 检查并扩容
+     */
+    private void checkAndGrow() {
+        if (size == 0){
+            array = new int[capacity] ;
+        }else if (size == capacity) {
+            //需要扩容
+            //扩容1.5
+            capacity += capacity >> 1;
+            int[] newArray = new int[capacity] ;
+            System.arraycopy(array,0,newArray,0,size);
+            array = newArray ;
         }
     }
 
@@ -62,6 +104,7 @@ public class DynamicArray implements Iterable<Integer> {
 
     /**
      * 遍历
+     *
      * @param consumer
      */
     public void foreach(Consumer<Integer> consumer) {
@@ -72,11 +115,12 @@ public class DynamicArray implements Iterable<Integer> {
 
     /**
      * 获取数据流
+     *
      * @return
      */
-    public IntStream stream(){
+    public IntStream stream() {
         //有效流
-        return IntStream.of(Arrays.copyOfRange(array,0,size)) ;
+        return IntStream.of(Arrays.copyOfRange(array, 0, size));
     }
 
     /**
