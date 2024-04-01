@@ -1,6 +1,8 @@
 package org.ADT;
 
+import java.util.Iterator;
 import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 /**
  * 单向链表
@@ -8,7 +10,7 @@ import java.util.function.Consumer;
  * @author : chengdu
  * @date :  2024/4/1-04
  **/
-public class SinglyLinkedList {
+public class SinglyLinkedList implements Iterable<Integer> {
     /**
      * 元素个数
      */
@@ -39,6 +41,7 @@ public class SinglyLinkedList {
 
     /**
      * 添加元素到第一个节点
+     *
      * @param v
      */
     public void addFirst(int v) {
@@ -50,21 +53,75 @@ public class SinglyLinkedList {
     }
 
     /**
-     * 循环遍历
+     * 循环遍历 (while)
+     *
      * @param consumer
      */
     public void loop(Consumer<Integer> consumer) {
+        if (consumer == null) {
+            return;
+        }
         //指针
         Node pointer = head;
         //不断往后移动 移动到null就结束
         while (pointer != null) {
-            if (consumer != null){
-                consumer.accept(pointer.value);
-            }
+            consumer.accept(pointer.value);
             pointer = pointer.next;
         }
     }
 
+    /**
+     * 循环遍历 (for)
+     *
+     * @param consumer
+     */
+    public void loopFor(Consumer<Integer> consumer) {
+        if (consumer == null) {
+            return;
+        }
+        for (Node pointer = head; pointer != null; pointer = pointer.next) {
+            consumer.accept(pointer.value);
+        }
+    }
+
+    /**
+     * java8 stream
+     * @return
+     */
+    public Stream<Integer> stream() {
+        Stream.Builder<Integer> builder = Stream.builder();
+        for (Node pointer = head; pointer != null; pointer = pointer.next) {
+            builder.add(pointer.value);
+        }
+        return builder.build();
+    }
+
+
+    /**
+     * 增强for循环
+     * Returns an iterator over elements of type {@code T}.
+     *
+     * @return an Iterator.
+     */
+    @Override
+    public Iterator<Integer> iterator() {
+        return new Iterator<Integer>() {
+            //指针
+            Node pointer = head;
+
+            @Override
+            public boolean hasNext() {
+                return pointer != null;
+            }
+
+            @Override
+            public Integer next() {
+                int value = pointer.value;
+                pointer = pointer.next;
+                return value;
+            }
+        };
+    }
 
     /**
      * 节点类
