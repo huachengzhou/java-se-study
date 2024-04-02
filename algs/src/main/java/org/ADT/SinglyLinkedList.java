@@ -86,6 +86,7 @@ public class SinglyLinkedList implements Iterable<Integer> {
 
     /**
      * java8 stream
+     *
      * @return
      */
     public Stream<Integer> stream() {
@@ -109,11 +110,19 @@ public class SinglyLinkedList implements Iterable<Integer> {
             //指针
             Node pointer = head;
 
+            /**
+             * 是否有下一个元素
+             * @return
+             */
             @Override
             public boolean hasNext() {
                 return pointer != null;
             }
 
+            /**
+             * 返回当前值 并指向下一个元素
+             * @return
+             */
             @Override
             public Integer next() {
                 int value = pointer.value;
@@ -121,6 +130,39 @@ public class SinglyLinkedList implements Iterable<Integer> {
                 return value;
             }
         };
+    }
+
+    /**
+     * 添加元素到最后一个节点
+     *
+     * @param val
+     */
+    public void addLast(int val) {
+        Node last = findLast();
+        if (last != null) {
+            last.next = new Node(val, null);
+            size++;
+        } else {
+//            head = new Node(val, null);
+            addFirst(val);
+        }
+    }
+
+    /**
+     * 获取最后一个节点
+     *
+     * @return
+     */
+    private Node findLast() {
+        //空链表
+        if (head == null) {
+            return null;
+        }
+        Node pointer;
+        for (pointer = head; pointer.next != null; pointer = pointer.next) {
+
+        }
+        return pointer;
     }
 
     /**

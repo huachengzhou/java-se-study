@@ -1,8 +1,13 @@
 package www.other;
 
+import com.google.common.collect.Lists;
 import org.ADT.SinglyLinkedList;
 import org.junit.Assert;
 import org.junit.Test;
+import org.testng.asserts.Assertion;
+
+import java.util.stream.Collectors;
+
 
 /**
  * @author : chengdu
@@ -56,6 +61,18 @@ public class SinglyLinkedListTest {
         for (Integer integer : singlyLinkedList) {
             System.out.println(integer);
         }
+    }
+
+
+    @Test
+    public void test_addLast(){
+        SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
+        singlyLinkedList.addLast(1);
+        singlyLinkedList.addLast(2);
+        singlyLinkedList.addLast(3);
+        singlyLinkedList.addLast(4);
+        Assertion assertion = new Assertion();
+        assertion.assertEquals(singlyLinkedList.stream().collect(Collectors.toList()), Lists.newArrayList(1,2,3,4));
     }
 
 
