@@ -148,6 +148,23 @@ public class SinglyLinkedList implements Iterable<Integer> {
         }
     }
 
+    public void insert(int value,int index){
+        if (index == 0){
+            addFirst(value);
+            return;
+        }
+        //找到  要插入位置的前一个元素
+        Node prevNode = findNode(index - 1);
+        if (prevNode == null){
+            throw new IllegalArgumentException(String.format("数组索引非法 [%d]", index));
+        }
+        //new node 的next 就是prev的下一个元素
+        Node newNode = new Node(value, prevNode.next) ;
+        // 插入位置的前一个next必须指向新的节点
+        prevNode.next = newNode ;
+        size++;
+    }
+
     /**
      * 根据索引获取元素
      *

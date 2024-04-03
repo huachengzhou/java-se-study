@@ -85,5 +85,17 @@ public class SinglyLinkedListTest {
         Assert.assertTrue("不相等!", 3 == singlyLinkedList.get(2));
     }
 
+    @Test
+    public void test_insert() {
+        SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
+        singlyLinkedList.addLast(1);
+        singlyLinkedList.addLast(2);
+        singlyLinkedList.addLast(3);
+        singlyLinkedList.insert(4,1);
+        for (Integer integer:singlyLinkedList){
+            System.out.println(integer);
+        }
+    }
+
 
 }
