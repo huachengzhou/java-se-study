@@ -149,6 +149,40 @@ public class SinglyLinkedList implements Iterable<Integer> {
     }
 
     /**
+     * 根据索引获取元素
+     *
+     * @param index
+     * @return
+     */
+    public int get(int index) {
+        Node node = findNode(index);
+        if (node == null) {
+            throw new IllegalArgumentException(String.format("数组索引越界 [%d]", index));
+        }
+        return node.value;
+    }
+
+    /**
+     * 根据索引寻找节点
+     *
+     * @param index
+     * @return
+     */
+    private Node findNode(int index) {
+        if (head == null) {
+            return null;
+        }
+        Node pointer;
+        int i = 0;
+        for (pointer = head; pointer != null; pointer = pointer.next, i++) {
+            if (i == index) {
+                return pointer;
+            }
+        }
+        return null;
+    }
+
+    /**
      * 获取最后一个节点
      *
      * @return

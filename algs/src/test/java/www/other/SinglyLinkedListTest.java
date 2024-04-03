@@ -65,14 +65,24 @@ public class SinglyLinkedListTest {
 
 
     @Test
-    public void test_addLast(){
+    public void test_addLast() {
         SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
         singlyLinkedList.addLast(1);
         singlyLinkedList.addLast(2);
         singlyLinkedList.addLast(3);
         singlyLinkedList.addLast(4);
         Assertion assertion = new Assertion();
-        assertion.assertEquals(singlyLinkedList.stream().collect(Collectors.toList()), Lists.newArrayList(1,2,3,4));
+        assertion.assertEquals(singlyLinkedList.stream().collect(Collectors.toList()), Lists.newArrayList(1, 2, 3, 4));
+    }
+
+    @Test
+    public void test_get() {
+        SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
+        singlyLinkedList.addLast(1);
+        singlyLinkedList.addLast(2);
+        singlyLinkedList.addLast(3);
+        singlyLinkedList.addLast(4);
+        Assert.assertTrue("不相等!", 3 == singlyLinkedList.get(2));
     }
 
 
