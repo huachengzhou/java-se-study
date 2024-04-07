@@ -148,20 +148,55 @@ public class SinglyLinkedList implements Iterable<Integer> {
         }
     }
 
-    public void insert(int value,int index){
-        if (index == 0){
+    /**
+     * 删除第一个节点
+     */
+    public void removeFirst() {
+        if (head != null) {
+            head = head.next;
+            size--;
+        }
+    }
+
+    /**
+     * 删除节点
+     * @param index
+     */
+    public void remove(int index) {
+        if (index == 0) {
+            removeFirst();
+            return;
+        }
+        //找到上一个节点
+        Node prevNode = findNode(index - 1);
+        if (prevNode != null) {
+            //被删除节点
+            Node deleted = prevNode.next;
+            if (deleted == null) {
+                throw new IllegalArgumentException(String.format("数组索引非法 [%d]", index));
+            }
+            //连接
+            prevNode.next = deleted.next ;
+            size--;
+        }else {
+            throw new IllegalArgumentException(String.format("数组索引非法 [%d]", index));
+        }
+    }
+
+    public void insert(int value, int index) {
+        if (index == 0) {
             addFirst(value);
             return;
         }
         //找到  要插入位置的前一个元素
         Node prevNode = findNode(index - 1);
-        if (prevNode == null){
+        if (prevNode == null) {
             throw new IllegalArgumentException(String.format("数组索引非法 [%d]", index));
         }
         //new node 的next 就是prev的下一个元素
-        Node newNode = new Node(value, prevNode.next) ;
+        Node newNode = new Node(value, prevNode.next);
         // 插入位置的前一个next必须指向新的节点
-        prevNode.next = newNode ;
+        prevNode.next = newNode;
         size++;
     }
 

@@ -98,4 +98,35 @@ public class SinglyLinkedListTest {
     }
 
 
+    @Test
+    public void test_removeFirst() {
+        SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
+        singlyLinkedList.addLast(1);
+        singlyLinkedList.addLast(2);
+        singlyLinkedList.addLast(3);
+        singlyLinkedList.addLast(4);
+
+        singlyLinkedList.removeFirst();
+        singlyLinkedList.removeFirst();
+        for (Integer integer:singlyLinkedList){
+            System.out.println(integer);
+        }
+    }
+
+    @Test
+    public void test_remove() {
+        SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
+        singlyLinkedList.addLast(1);
+        singlyLinkedList.addLast(2);
+        singlyLinkedList.addLast(3);
+        singlyLinkedList.addLast(4);
+        singlyLinkedList.addLast(5);
+
+        singlyLinkedList.remove(0);
+        singlyLinkedList.remove(singlyLinkedList.getSize()-1);
+        for (Integer integer:singlyLinkedList){
+            System.out.println(integer);
+        }
+    }
+
 }
