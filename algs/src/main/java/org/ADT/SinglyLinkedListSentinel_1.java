@@ -28,11 +28,7 @@ public class SinglyLinkedListSentinel_1 implements Iterable<Integer> {
      * @param v
      */
     public void addFirst(int v) {
-        //1:链表为null
-        //2:链表非空
-        //先创建节点 然后赋值给head
-        this.head = new Node(v, head);
-        size++;
+      insert(v,0);
     }
 
     /**
@@ -130,10 +126,7 @@ public class SinglyLinkedListSentinel_1 implements Iterable<Integer> {
      * 删除第一个节点
      */
     public void removeFirst() {
-        if (head != null) {
-            head = head.next;
-            size--;
-        }
+       remove(0);
     }
 
     /**
@@ -141,11 +134,8 @@ public class SinglyLinkedListSentinel_1 implements Iterable<Integer> {
      * @param index
      */
     public void remove(int index) {
-        if (index == 0) {
-            removeFirst();
-            return;
-        }
         //找到上一个节点
+//        Node prevNode = findNode(index);
         Node prevNode = findNode(index - 1);
         if (prevNode != null) {
             //被删除节点
@@ -162,10 +152,6 @@ public class SinglyLinkedListSentinel_1 implements Iterable<Integer> {
     }
 
     public void insert(int value, int index) {
-        if (index == 0) {
-            addFirst(value);
-            return;
-        }
         //找到  要插入位置的前一个元素
         Node prevNode = findNode(index - 1);
         if (prevNode == null) {
@@ -200,8 +186,8 @@ public class SinglyLinkedListSentinel_1 implements Iterable<Integer> {
      */
     private Node findNode(int index) {
         Node pointer;
-        int i = 0;
-        for (pointer = head.next; pointer != null; pointer = pointer.next, i++) {
+        int i = -1;
+        for (pointer = head; pointer != null; pointer = pointer.next, i++) {
             if (i == index) {
                 return pointer;
             }
