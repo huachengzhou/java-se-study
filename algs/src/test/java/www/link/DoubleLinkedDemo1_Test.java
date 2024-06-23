@@ -41,5 +41,30 @@ public class DoubleLinkedDemo1_Test {
         linkedList.forEach(integer -> System.out.println(integer));
     }
 
+    @Test
+    public void test_remove() {
+        DoubleLinkedDemo1 linkedList = new DoubleLinkedDemo1();
+        linkedList.addLast(41);
+        linkedList.addLast(84);
+        linkedList.addLast(46);
+        linkedList.addLast(59);
+
+        linkedList.remove(3);
+        linkedList.forEach(integer -> System.out.println(integer));
+    }
+
+
+    @Test
+    public void test_insert() {
+        DoubleLinkedDemo1 linkedList = new DoubleLinkedDemo1();
+        linkedList.insert(92, 0);
+        linkedList.insert(88, 1);
+        linkedList.insert(100, 2);
+        linkedList.insert(29, 3);
+//        linkedList.forEach(integer -> System.out.println(integer));
+
+        System.out.println(linkedList.get(0));
+        System.out.println(linkedList.get(3));
+    }
 
 }
