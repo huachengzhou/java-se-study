@@ -6,6 +6,11 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.testng.asserts.Assertion;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -20,6 +25,7 @@ public class SinglyLinkedListSentinel_1Test {
         singlyLinkedList.addFirst(2);//第一次 第一个元素 第二次 第二个元素
         singlyLinkedList.addFirst(3);//               第二次 第一个元素
         Assert.assertTrue("元素个数不相等", 2 == singlyLinkedList.getSize());
+        Assert.assertTrue("元素不相等", 3 == singlyLinkedList.get(0));
     }
 
     @Test
@@ -92,7 +98,7 @@ public class SinglyLinkedListSentinel_1Test {
         singlyLinkedList.addLast(1);
         singlyLinkedList.addLast(2);
         singlyLinkedList.addLast(3);
-        singlyLinkedList.insert(4, 1);
+        singlyLinkedList.insert(4, 0);
         for (Integer integer : singlyLinkedList) {
             System.out.println(integer);
         }
@@ -129,6 +135,24 @@ public class SinglyLinkedListSentinel_1Test {
         singlyLinkedList.remove(singlyLinkedList.getSize() - 1);
         for (Integer integer : singlyLinkedList) {
             System.out.println(integer);
+        }
+    }
+
+
+    @Test
+    public void testMulReadFileLine() throws Exception {
+        String dir = "E:\\data\\sql\\pmcc_acc_all.sql";
+        File file = new File(dir);
+        System.out.println("length:" + file.length());
+        InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(file));
+        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+        int size = 200;
+        while (bufferedReader.ready()) {
+            System.out.println(bufferedReader.readLine());
+            size--;
+            if (size == 0) {
+                break;
+            }
         }
     }
 
